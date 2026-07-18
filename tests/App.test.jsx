@@ -50,6 +50,7 @@ describe('multi-page portfolio', () => {
 
     const main = within(screen.getByRole('main'))
     expect(screen.getByRole('heading', { level: 1, name: '欢迎联系' })).toBeInTheDocument()
+    await waitFor(() => expect(document.title).toBe('欢迎联系 | 侯宇杰'))
     expect(main.getByText('中山大学中法核工程与技术学院 & 管理学院')).toBeInTheDocument()
     expect(main.getByText('核工程与核技术 & 创业管理双学位')).toBeInTheDocument()
     expect(main.getByText('机器人、控制、数字孪生与 AI 系统')).toBeInTheDocument()

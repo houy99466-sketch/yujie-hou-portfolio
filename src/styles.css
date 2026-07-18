@@ -86,6 +86,18 @@ a:focus-visible,
   transform: translateY(0);
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .site-header {
   position: sticky;
   z-index: 30;
@@ -1126,38 +1138,57 @@ main:focus {
   font-size: 15px;
 }
 
-.detail-links-band {
-  padding-block: 72px;
-  background: var(--blue);
-  color: #ffffff;
-}
-
-.detail-links-layout {
+.public-links-section {
   display: grid;
   grid-template-columns: 250px minmax(0, 1fr);
   gap: 72px;
+  padding-block: 64px;
+  background: var(--blue);
+  box-shadow: 0 0 0 100vmax var(--blue);
+  clip-path: inset(0 -100vmax);
+  color: #ffffff;
 }
 
-.detail-links-layout h2 {
+.public-links-heading > span {
+  display: block;
+  margin-bottom: 12px;
+  color: rgba(255, 255, 255, 0.66);
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.public-links-heading h2 {
   margin: 0;
   font-family: Georgia, "Noto Serif SC", serif;
   font-size: 34px;
   font-weight: 500;
 }
 
-.detail-links-layout > div {
+.public-links-list {
   border-bottom: 1px solid rgba(255, 255, 255, 0.34);
 }
 
-.detail-links-layout a {
-  min-height: 60px;
-  display: flex;
-  justify-content: space-between;
+.public-links-list a {
+  min-height: 68px;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) 20px;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
+  padding-inline: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.34);
+  transition: background 180ms ease;
+}
+
+.public-links-list a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.public-links-list strong {
+  min-width: 0;
   font-size: 14px;
   font-weight: 750;
+  line-height: 1.55;
 }
 
 .skills-tree {
@@ -1425,6 +1456,130 @@ main:focus {
   color: rgba(255, 255, 255, 0.52);
 }
 
+.contact-layout {
+  display: grid;
+  gap: 0;
+  padding-block: 104px;
+}
+
+.contact-section {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 72px;
+  padding-block: 52px;
+  border-top: 1px solid var(--line);
+}
+
+.contact-section:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-section-heading {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 14px;
+  align-content: start;
+}
+
+.contact-section-heading > span {
+  padding-top: 5px;
+  color: var(--red);
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.contact-section-heading h2 {
+  margin: 0;
+  font-family: Georgia, "Noto Serif SC", serif;
+  font-size: 34px;
+  font-weight: 500;
+}
+
+.contact-details {
+  margin: 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-details > div {
+  min-height: 76px;
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+  border-top: 1px solid var(--line);
+}
+
+.contact-details dt {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.contact-details dd {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 720;
+  line-height: 1.6;
+}
+
+.contact-methods {
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-method {
+  min-height: 92px;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 104px;
+  gap: 18px;
+  align-items: center;
+  border-top: 1px solid var(--line);
+}
+
+.contact-method > svg {
+  color: var(--blue);
+}
+
+.contact-method > div:not(.copy-contact-action) {
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.contact-method span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.contact-method strong {
+  overflow-wrap: anywhere;
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.copy-contact-action button {
+  width: 104px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 780;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.copy-contact-action button:hover {
+  background: var(--ink);
+  color: #ffffff;
+}
+
 .site-footer {
   padding-block: 32px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -1583,7 +1738,8 @@ main:focus {
   }
 
   .detail-section,
-  .detail-links-layout {
+  .public-links-section,
+  .contact-section {
     grid-template-columns: 1fr;
     gap: 32px;
   }
@@ -1674,6 +1830,7 @@ main:focus {
   .workflow-archive,
   .skills-tree,
   .profile-grid,
+  .contact-layout,
   .workflow-band,
   .writing-band,
   .profile-contact {
@@ -1859,8 +2016,42 @@ main:focus {
     grid-template-columns: 42px minmax(0, 1fr) 22px;
   }
 
-  .detail-links-band {
-    padding-block: 60px;
+  .public-links-section {
+    padding-block: 52px;
+  }
+
+  .public-links-list a {
+    min-height: 76px;
+    padding-inline: 0;
+  }
+
+  .contact-section {
+    padding-block: 44px;
+  }
+
+  .contact-section-heading {
+    grid-template-columns: 40px minmax(0, 1fr);
+  }
+
+  .contact-details > div {
+    grid-template-columns: 1fr;
+    gap: 7px;
+    align-content: center;
+    padding-block: 18px;
+  }
+
+  .contact-method {
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 14px;
+    padding-block: 20px;
+  }
+
+  .copy-contact-action {
+    grid-column: 2;
+  }
+
+  .copy-contact-action button {
+    width: 100%;
   }
 
   .skills-trunk {

@@ -26,4 +26,14 @@ describe('site shell assets', () => {
 
     expect(redirects.trim()).toBe('/* /index.html 200')
   })
+
+  test('styles the public links and contact page responsively', () => {
+    const styles = readFileSync('src/styles.css', 'utf8')
+
+    expect(styles).toContain('.public-links-section {')
+    expect(styles).toContain('.contact-details {')
+    expect(styles).toMatch(
+      /@media \(max-width: 820px\)[\s\S]*?\.public-links-section\s*\{[\s\S]*?grid-template-columns:\s*1fr/,
+    )
+  })
 })

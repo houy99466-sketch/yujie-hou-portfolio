@@ -1,8 +1,8 @@
-import { ExternalLink, Github, Newspaper, Play } from 'lucide-react'
+import { ExternalLink, GitBranch, Newspaper, Play } from 'lucide-react'
 
 const linkIcons = {
   article: Newspaper,
-  code: Github,
+  code: GitBranch,
   video: Play,
 }
 

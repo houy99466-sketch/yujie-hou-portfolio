@@ -11,6 +11,7 @@ const routeTitles = {
   '/ai-workflows': `AI 工具流 | ${siteMeta.name}`,
   '/skills': `技能图谱 | ${siteMeta.name}`,
   '/profile': `经历与成果 | ${siteMeta.name}`,
+  '/contact': `欢迎联系 | ${siteMeta.name}`,
 }
 
 function getPageTitle(pathname) {
