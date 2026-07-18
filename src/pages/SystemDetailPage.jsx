@@ -2,6 +2,7 @@ import { Navigate, useParams } from 'react-router-dom'
 
 import { DetailLayout, DetailSection } from '../components/DetailLayout.jsx'
 import { FlowDiagram } from '../components/FlowDiagram.jsx'
+import { PublicLinksSection } from '../components/PublicLinksSection.jsx'
 import { RelatedLinks } from '../components/RelatedLinks.jsx'
 import { getSystem, systems } from '../data/systems.js'
 
@@ -55,6 +56,8 @@ export function SystemDetailPage() {
           ))}
         </ol>
       </DetailSection>
+
+      <PublicLinksSection links={system.links} />
 
       <DetailSection id="evidence" number="04" title="证据与边界" tone="ink">
         <div className="evidence-columns">

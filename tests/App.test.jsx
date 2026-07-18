@@ -103,6 +103,59 @@ describe('multi-page portfolio', () => {
     )
   })
 
+  test('places verified engineering links before evidence and omits empty link sections', () => {
+    const { unmount } = renderAt('/systems/uav-usv')
+
+    const uavLinks = screen.getByRole('region', { name: '公开链接' })
+    const uavBoundary = screen.getByRole('heading', { level: 2, name: '证据与边界' })
+    expect(screen.getByRole('link', { name: '观看 UAV-USV 公开演示' })).toHaveAttribute(
+      'href',
+      'https://www.bilibili.com/video/BV1NZJn6XEBW/',
+    )
+    expect(uavLinks.compareDocumentPosition(uavBoundary) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING,
+    )
+
+    unmount()
+    renderAt('/systems/thermal-control')
+    expect(screen.queryByRole('region', { name: '公开链接' })).not.toBeInTheDocument()
+  })
+
+  test('places EmoTender repository and article links before evidence and boundary', () => {
+    renderAt('/systems/emotender')
+
+    const publicLinks = screen.getByRole('region', { name: '公开链接' })
+    const boundary = screen.getByRole('heading', { level: 2, name: '证据与边界' })
+    expect(screen.getByRole('link', { name: '打开 EmoTender GitHub 仓库' })).toHaveAttribute(
+      'href',
+      'https://github.com/houy99466-sketch/emotender_release',
+    )
+    expect(screen.getByRole('link', { name: '阅读 EmoTender 项目复盘' })).toHaveAttribute(
+      'href',
+      'https://mp.weixin.qq.com/s/eDVuXLq-3auV4C-GI5fKLg',
+    )
+    expect(
+      publicLinks.compareDocumentPosition(boundary) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBe(Node.DOCUMENT_POSITION_FOLLOWING)
+  })
+
+  test('places workflow repository and article links before project value', () => {
+    renderAt('/ai-workflows/smart-schedule')
+
+    const publicLinks = screen.getByRole('region', { name: '公开链接' })
+    const value = screen.getByRole('heading', { level: 2, name: '项目价值' })
+    expect(
+      screen.getByRole('link', { name: '打开飞书智能日历表 GitHub 仓库' }),
+    ).toHaveAttribute('href', 'https://github.com/houy99466-sketch/smart-schedule')
+    expect(screen.getByRole('link', { name: '阅读智能日程文章' })).toHaveAttribute(
+      'href',
+      'https://mp.weixin.qq.com/s/Bp7Eo87HWZw29NhT_oQwyQ',
+    )
+    expect(publicLinks.compareDocumentPosition(value) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING,
+    )
+  })
+
   test('lists the three AI workflow case studies', () => {
     renderAt('/ai-workflows')
 

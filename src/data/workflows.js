@@ -22,8 +22,8 @@ export const workflows = [
     value:
       '把“让 AI 了解我”从反复粘贴资料变成可控的本地工作流，同时保留普通问答和深度咨询之间的权限边界。',
     links: [
-      { label: '打开 consulter GitHub 仓库', href: publicLinks.consulter },
-      { label: '阅读相关工作流文章', href: publicLinks.workflowArticle },
+      { label: '打开 consulter GitHub 仓库', href: publicLinks.consulter, kind: 'code' },
+      { label: '阅读相关工作流文章', href: publicLinks.workflowArticle, kind: 'article' },
     ],
   },
   {
@@ -47,8 +47,8 @@ export const workflows = [
     value:
       '让项目过程本身成为公开表达的素材来源，减少重复整理，并把技术协作、设计取舍和可视化结果组织成完整文章。',
     links: [
-      { label: '打开 visual-article GitHub 仓库', href: publicLinks.visualArticle },
-      { label: '阅读相关工作流文章', href: publicLinks.workflowArticle },
+      { label: '打开 visual-article GitHub 仓库', href: publicLinks.visualArticle, kind: 'code' },
+      { label: '阅读相关工作流文章', href: publicLinks.workflowArticle, kind: 'article' },
     ],
   },
   {
@@ -72,8 +72,8 @@ export const workflows = [
     value:
       '把自然语言理解、个人规划偏好和飞书数据结构连接成可运行工具，而不是停留在一次性的提示词演示。',
     links: [
-      { label: '打开飞书智能日历表 GitHub 仓库', href: publicLinks.smartSchedule },
-      { label: '阅读智能日程文章', href: publicLinks.scheduleArticle },
+      { label: '打开飞书智能日历表 GitHub 仓库', href: publicLinks.smartSchedule, kind: 'code' },
+      { label: '阅读智能日程文章', href: publicLinks.scheduleArticle, kind: 'article' },
     ],
   },
 ]

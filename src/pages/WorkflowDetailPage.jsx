@@ -2,6 +2,7 @@ import { Navigate, useParams } from 'react-router-dom'
 
 import { DetailLayout, DetailSection } from '../components/DetailLayout.jsx'
 import { FlowDiagram } from '../components/FlowDiagram.jsx'
+import { PublicLinksSection } from '../components/PublicLinksSection.jsx'
 import { RelatedLinks } from '../components/RelatedLinks.jsx'
 import { getWorkflow, workflows } from '../data/workflows.js'
 
@@ -40,6 +41,8 @@ export function WorkflowDetailPage() {
           ))}
         </ol>
       </DetailSection>
+
+      <PublicLinksSection links={workflow.links} />
 
       <DetailSection id="workflow-value" number="04" title="项目价值" tone="ink">
         <p className="detail-lead">{workflow.value}</p>
