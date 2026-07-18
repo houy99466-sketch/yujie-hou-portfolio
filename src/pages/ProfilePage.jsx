@@ -1,4 +1,5 @@
-import { Download, ExternalLink, GitBranch, Mail } from 'lucide-react'
+import { ArrowRight, Download, ExternalLink, GitBranch, Mail } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 import { PageIntro } from '../components/PageIntro.jsx'
 import { education, honors, profileSummary } from '../data/profile.js'
@@ -58,14 +59,14 @@ export function ProfilePage() {
             <p>公开页面仅保留邮件、GitHub 与作品集下载。</p>
           </div>
           <div className="profile-contact-actions">
-            <a className="contact-row" href={publicLinks.email} aria-label="发送邮件">
+            <Link className="contact-row" to="/contact" aria-label="发送邮件">
               <Mail aria-hidden="true" />
               <span>
                 <small>邮箱</small>
                 <strong>发送邮件</strong>
               </span>
-              <ExternalLink aria-hidden="true" size={17} />
-            </a>
+              <ArrowRight aria-hidden="true" size={17} />
+            </Link>
             <a className="contact-row" href={publicLinks.github} target="_blank" rel="noreferrer">
               <GitBranch aria-hidden="true" />
               <span>

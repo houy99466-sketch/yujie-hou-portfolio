@@ -24,10 +24,10 @@ export function HomePage() {
                 查看工程系统
                 <ArrowRight aria-hidden="true" size={18} />
               </Link>
-              <a className="action action-ghost-light" href={publicLinks.email}>
+              <Link className="action action-ghost-light" to="/contact">
                 <Mail aria-hidden="true" size={18} />
                 欢迎交流
-              </a>
+              </Link>
             </div>
           </div>
           <aside className="home-index" aria-label="个人概览">
@@ -110,10 +110,10 @@ export function HomePage() {
             <h2 id="home-contact-title">欢迎沟通交流。</h2>
           </div>
           <div className="home-contact-actions">
-            <a className="action action-primary" href={publicLinks.email}>
+            <Link className="action action-primary" to="/contact">
               <Mail aria-hidden="true" size={18} />
               发送邮件
-            </a>
+            </Link>
             <a className="action action-outline" href={publicLinks.github} target="_blank" rel="noreferrer">
               <GitBranch aria-hidden="true" size={18} />
               查看 GitHub

@@ -13,10 +13,19 @@ export const navItems = [
   { label: 'AI 工具流', href: '/ai-workflows' },
   { label: '技能图谱', href: '/skills' },
   { label: '经历与成果', href: '/profile' },
+  { label: '欢迎联系', href: '/contact' },
 ]
 
+export const contactInfo = {
+  name: '侯宇杰',
+  institution: '中山大学中法核工程与技术学院 & 管理学院',
+  degree: '核工程与核技术 & 创业管理双学位',
+  focus: '机器人、控制、数字孪生与 AI 系统',
+  wechat: 'Hyj032979',
+  email: '2110474083@qq.com',
+}
+
 export const publicLinks = {
-  email: 'mailto:2110474083@qq.com',
   github: 'https://github.com/houy99466-sketch',
   portfolio: '/downloads/Yujie_Hou_Selected_Projects_Portfolio_ZH.pdf',
   uavDemo: 'https://www.bilibili.com/video/BV1NZJn6XEBW/',

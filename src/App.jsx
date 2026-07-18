@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 
 import { ScrollManager } from './components/ScrollManager.jsx'
 import { SiteLayout } from './components/SiteLayout.jsx'
+import { ContactPage } from './pages/ContactPage.jsx'
 import { HomePage } from './pages/HomePage.jsx'
 import { ProfilePage } from './pages/ProfilePage.jsx'
 import { SkillsPage } from './pages/SkillsPage.jsx'
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="ai-workflows/:slug" element={<WorkflowDetailPage />} />
           <Route path="skills" element={<SkillsPage />} />
           <Route path="profile" element={<ProfilePage />} />
+          <Route path="contact" element={<ContactPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>

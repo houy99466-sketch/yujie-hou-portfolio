@@ -75,7 +75,7 @@ export function SiteLayout() {
             <span>机器人、控制、数字孪生与 AI 系统</span>
           </div>
           <div className="footer-links">
-            <a href={publicLinks.email}>邮件</a>
+            <Link to="/contact">邮件</Link>
             <a href={publicLinks.github} target="_blank" rel="noreferrer">
               GitHub
             </a>

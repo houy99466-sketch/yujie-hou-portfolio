@@ -1,5 +1,5 @@
-import { cleanup, render, screen, within } from '@testing-library/react'
-import { afterEach, describe, expect, test } from 'vitest'
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+import { afterEach, describe, expect, test, vi } from 'vitest'
 
 import App from '../src/App.jsx'
 
@@ -14,7 +14,7 @@ function renderAt(path) {
 }
 
 describe('multi-page portfolio', () => {
-  test('renders a compact homepage with the five-page navigation', () => {
+  test('renders a compact homepage with the six-page navigation and contact entry points', () => {
     renderAt('/')
 
     expect(screen.getByRole('heading', { level: 1, name: '侯宇杰' })).toBeInTheDocument()
@@ -27,8 +27,40 @@ describe('multi-page portfolio', () => {
     expect(within(navigation).getByRole('link', { name: 'AI 工具流' })).toBeInTheDocument()
     expect(within(navigation).getByRole('link', { name: '技能图谱' })).toBeInTheDocument()
     expect(within(navigation).getByRole('link', { name: '经历与成果' })).toBeInTheDocument()
+    expect(within(navigation).getByRole('link', { name: '欢迎联系' })).toHaveAttribute(
+      'href',
+      '/contact',
+    )
+    expect(screen.getByRole('link', { name: '欢迎交流' })).toHaveAttribute('href', '/contact')
+    expect(screen.getByRole('link', { name: '发送邮件' })).toHaveAttribute('href', '/contact')
+    expect(screen.getByRole('link', { name: '邮件' })).toHaveAttribute('href', '/contact')
     expect(screen.getByRole('link', { name: '跳到正文' })).toBeInTheDocument()
+    expect(document.querySelector('a[href^="mailto:"]')).not.toBeInTheDocument()
     expect(document.body).not.toHaveTextContent('18318032979')
+  })
+
+  test('shows exact public contact details and copies the WeChat ID', async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined)
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText },
+    })
+
+    renderAt('/contact')
+
+    const main = within(screen.getByRole('main'))
+    expect(screen.getByRole('heading', { level: 1, name: '欢迎联系' })).toBeInTheDocument()
+    expect(main.getByText('中山大学中法核工程与技术学院 & 管理学院')).toBeInTheDocument()
+    expect(main.getByText('核工程与核技术 & 创业管理双学位')).toBeInTheDocument()
+    expect(main.getByText('机器人、控制、数字孪生与 AI 系统')).toBeInTheDocument()
+    expect(main.getByText('Hyj032979')).toBeInTheDocument()
+    expect(main.getByText('2110474083@qq.com')).toBeInTheDocument()
+    expect(document.querySelector('a[href^="mailto:"]')).not.toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('button', { name: '复制微信' }))
+
+    await waitFor(() => expect(writeText).toHaveBeenCalledWith('Hyj032979'))
+    expect(await screen.findByText('微信已复制')).toBeInTheDocument()
   })
 
   test('lists all four engineering systems on the systems page', () => {
@@ -128,10 +160,8 @@ describe('multi-page portfolio', () => {
       screen.getByText('2026 年第六届全国大学生高电压与等离子体科技创新竞赛二等奖'),
     ).toBeInTheDocument()
     expect(screen.getByText('团队负责人')).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: '发送邮件' })).toHaveAttribute(
-      'href',
-      'mailto:2110474083@qq.com',
-    )
+    expect(screen.getByRole('link', { name: '发送邮件' })).toHaveAttribute('href', '/contact')
+    expect(document.querySelector('a[href^="mailto:"]')).not.toBeInTheDocument()
     expect(screen.getByRole('link', { name: '下载中文作品集 PDF' })).toHaveAttribute(
       'href',
       '/downloads/Yujie_Hou_Selected_Projects_Portfolio_ZH.pdf',
