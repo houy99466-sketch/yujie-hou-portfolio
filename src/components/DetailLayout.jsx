@@ -2,8 +2,11 @@ import { ArrowLeft } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 import { EvidenceStrip } from './EvidenceStrip.jsx'
+import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 export function DetailLayout({ parentHref, parentLabel, item, children }) {
+  const { copy } = useLanguage()
+
   return (
     <>
       <header className="detail-hero">
@@ -21,7 +24,7 @@ export function DetailLayout({ parentHref, parentLabel, item, children }) {
             <p className="detail-tagline">{item.tagline}</p>
             {item.role ? (
               <div className="role-callout">
-                <span>我的职责</span>
+                <span>{copy.shared.myRole}</span>
                 <strong>{item.role}</strong>
               </div>
             ) : null}

@@ -1,4 +1,5 @@
 import { ExternalLink, GitBranch, Newspaper, Play } from 'lucide-react'
+import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 const linkIcons = {
   article: Newspaper,
@@ -7,13 +8,18 @@ const linkIcons = {
 }
 
 export function PublicLinksSection({ links }) {
+  const { copy } = useLanguage()
   if (!links?.length) return null
 
   return (
-    <section className="public-links-section" aria-labelledby="public-links-title">
+    <section
+      className="public-links-section"
+      aria-labelledby="public-links-title"
+      aria-label={copy.shared.publicLinks}
+    >
       <div className="public-links-heading">
-        <span>公开证据</span>
-        <h2 id="public-links-title">公开链接</h2>
+        <span>{copy.shared.publicEvidence}</span>
+        <h2 id="public-links-title">{copy.shared.publicLinks}</h2>
       </div>
       <div className="public-links-list">
         {links.map((link) => {

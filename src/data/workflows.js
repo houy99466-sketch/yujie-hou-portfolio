@@ -78,6 +78,78 @@ export const workflows = [
   },
 ]
 
-export function getWorkflow(slug) {
-  return workflows.find((workflow) => workflow.slug === slug)
+const workflowTranslationsEn = {
+  consulter: {
+    title: 'consulter',
+    category: 'Private Context Management',
+    tagline: 'Making long-term context reusable while keeping private journal entries explicit, read-only, and local.',
+    summary: 'A Codex plugin for local private context: regular conversations read the profile, while diary access occurs only through an explicit /consulter request.',
+    problem: 'Long-term background becomes scattered across conversations and cannot be reused reliably. Injecting all private material by default would create unnecessary privacy exposure.',
+    workflow: ['Regular prompt', 'Read profile.md', 'Inject concise context', 'Generate a personalized response'],
+    alternateWorkflow: ['/consulter prompt', 'Read profile.md + diary.md', 'Keep diary read-only', 'Deep consultation and reflection'],
+    implementation: [
+      'Maintains education, skills, projects, goals, and preferences in a local profile.md file.',
+      'Reads diary.md only after an explicit /consulter trigger; regular conversations do not access it.',
+      'Separates the private resource directory from public repositories so real private material is never uploaded to GitHub.',
+    ],
+    outputs: ['Long-term personal context injection', 'Explicit deep-consultation mode', 'Local resource initialization script', 'Documented privacy boundary'],
+    value: 'Turns repeated personal-context pasting into a controlled local workflow while preserving a clear permission boundary between regular questions and deep consultation.',
+    links: [
+      { label: 'Open the consulter GitHub repository', href: publicLinks.consulter, kind: 'code' },
+      { label: 'Read the related workflow article', href: publicLinks.workflowArticle, kind: 'article' },
+    ],
+  },
+  'visual-article': {
+    title: 'visual-article',
+    category: 'Content Production Workflow',
+    tagline: 'Turning completed project collaboration into a publishable article without reorganizing the same material again.',
+    summary: 'A Codex skill that converts the visible conversation context into a WeChat Official Account article, browser preview, and separate cover image.',
+    problem: 'After a project is complete, chat history, design tradeoffs, and implementation details remain scattered through the context. Writing an article from scratch repeats the work of extracting structure, visual design, and publishing format.',
+    workflow: ['Current conversation', 'Extract article structure', 'WeChat-compatible visual blocks', 'HTML preview', 'Separate cover image'],
+    alternateWorkflow: [],
+    implementation: [
+      'Generates wechat-article.html, article.html, and cover.png by default.',
+      'Uses inline styles, short sections, tables, and text-first diagrams for WeChat compatibility without relying on global CSS or JavaScript.',
+      'Creates a project-specific output directory, with real skill files and generated artifacts stored on the E drive.',
+    ],
+    outputs: ['WeChat article HTML', 'Browser preview HTML', 'Homepage hook cover image', 'Reusable article structure'],
+    value: 'Makes the project process itself a source for public communication, reducing repeated organization while turning technical collaboration, design tradeoffs, and visual results into a complete article.',
+    links: [
+      { label: 'Open the visual-article GitHub repository', href: publicLinks.visualArticle, kind: 'code' },
+      { label: 'Read the related workflow article', href: publicLinks.workflowArticle, kind: 'article' },
+    ],
+  },
+  'smart-schedule': {
+    title: 'Feishu Smart Calendar',
+    category: 'Structured Scheduling System',
+    tagline: 'Create, query, break down, and delete structured schedules with one natural-language instruction.',
+    summary: 'Parses natural-language schedules into structured tasks and writes them to Feishu Bitable, with CLI, Web Chat, and Feishu Bot interfaces.',
+    problem: 'Schedule input involves more than extracting a time. It must handle location, time zone, duration, priority, flexible windows, task decomposition, and existing commitments.',
+    workflow: ['Natural-language schedule input', 'LLM structured parsing', 'Planning rules and field validation', 'Feishu Bitable', 'Calendar view / Bot feedback'],
+    alternateWorkflow: [],
+    implementation: [
+      'A Python 3.12 project supporting DeepSeek or APIs with the same /chat/completions request structure.',
+      'Provides three interfaces: CLI, Web Chat, and Feishu Bot.',
+      'Wraps Feishu Bitable record queries, creation, and deletion while isolating real external interfaces during testing.',
+    ],
+    outputs: ['Single or multiple schedule entries', 'Exam and project-plan decomposition', 'Schedule query and deletion', 'Feishu Bitable calendar view'],
+    value: 'Connects natural-language understanding, personal planning preferences, and the Feishu data model into an operational tool instead of a one-off prompt demonstration.',
+    links: [
+      { label: 'Open the Feishu Smart Calendar GitHub repository', href: publicLinks.smartSchedule, kind: 'code' },
+      { label: 'Read the smart scheduling article', href: publicLinks.scheduleArticle, kind: 'article' },
+    ],
+  },
+}
+
+export const workflowsEn = workflows.map((workflow) => ({
+  ...workflow,
+  ...workflowTranslationsEn[workflow.slug],
+}))
+
+export function getWorkflows(language = 'zh') {
+  return language === 'en' ? workflowsEn : workflows
+}
+
+export function getWorkflow(slug, language = 'zh') {
+  return getWorkflows(language).find((workflow) => workflow.slug === slug)
 }

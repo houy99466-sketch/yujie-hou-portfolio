@@ -44,3 +44,52 @@ export const skillGroups = [
   },
 ]
 
+export const skillGroupsEn = [
+  {
+    id: 'autonomous-systems',
+    index: '01',
+    title: 'Autonomous Systems',
+    description: 'Autonomous robotics workflows from environmental perception and path planning to flight-controller communication.',
+    skills: ['ROS2 navigation workflows', 'Environmental perception', 'A* path planning', 'DWA obstacle avoidance', 'YOLO object detection', 'MAVLink', 'MAVROS', 'ArduPilot'],
+    evidence: [
+      { label: 'UAV-USV Cooperative Autonomous System', href: '/systems/uav-usv' },
+    ],
+  },
+  {
+    id: 'control-estimation',
+    index: '02',
+    title: 'Control & Estimation',
+    description: 'Feedback control, parameter tuning, and state estimation implemented in physical prototypes.',
+    skills: ['Feedback control', 'PID', 'Auto-tuning PID', 'MPC', 'Lambda tuning', 'Kalman filtering'],
+    evidence: [
+      { label: 'Multi-Channel Thermal Measurement & Control Instrument', href: '/systems/thermal-control' },
+      { label: 'UAV-USV Cooperative Autonomous System', href: '/systems/uav-usv' },
+    ],
+  },
+  {
+    id: 'embedded-integration',
+    index: '03',
+    title: 'Embedded Systems & Integration',
+    description: 'End-to-end debugging across firmware, sensors, actuators, and host applications.',
+    skills: ['STM32H743', 'C/C++', 'Python', 'ADC/PWM', 'Sensor interfaces', 'Hardware wiring', 'System debugging'],
+    evidence: [
+      { label: 'Multi-Channel Thermal Measurement & Control Instrument', href: '/systems/thermal-control' },
+      { label: 'UAV-USV Cooperative Autonomous System', href: '/systems/uav-usv' },
+    ],
+  },
+  {
+    id: 'simulation-ai',
+    index: '04',
+    title: 'Simulation & AI Tools',
+    description: 'A combination of scientific computing, immersive interaction, and AI-native workflows.',
+    skills: ['Unity', 'Meta Quest 3', 'XR Interaction Toolkit', 'PINN-related computing', 'Dify / Codex workflows', 'GitHub documentation'],
+    evidence: [
+      { label: 'Fusion Tokamak VR Digital Twin', href: '/systems/vr-digital-twin' },
+      { label: 'AI Workflows', href: '/ai-workflows' },
+    ],
+  },
+]
+
+export function getSkillGroups(language = 'zh') {
+  return language === 'en' ? skillGroupsEn : skillGroups
+}

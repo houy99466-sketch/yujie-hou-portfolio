@@ -138,7 +138,129 @@ export const systems = [
   },
 ]
 
-export function getSystem(slug) {
-  return systems.find((system) => system.slug === slug)
+const systemTranslationsEn = {
+  'uav-usv': {
+    title: 'UAV-USV Cooperative Autonomous System',
+    shortTitle: 'UAV-USV Cooperative System',
+    category: 'Autonomous Robotics / Real Hardware',
+    tagline: 'Integrating an unmanned surface vehicle into a physical UAV-USV cooperative system.',
+    summary: 'Built, assembled, debugged, and tuned the unmanned surface vehicle platform, connecting vehicle communication, QGC-based ground control, and ROS2 autonomous modules.',
+    outcome: 'The physical USV performs motion control, mode switching, following, and circling behaviors.',
+    role: 'Core developer for the USV and system integration; UAV-side implementation was outside my scope.',
+    imageAlt: 'Physical unmanned surface vehicle test on a campus lake',
+    architectureAlt: 'UAV-USV cooperative system architecture',
+    facts: ['Real hardware', 'Public demo', 'System integration'],
+    challenge: 'This was not a desktop simulation. The USV hardware, flight controller, communications, ground station, and autonomous modules had to work together on a real lake.',
+    flow: ['Custom ground station', '4G / MAVLink', 'Jetson / ROS2', 'MAVROS', 'Pixhawk', 'Dual-motor propulsion'],
+    contributions: [
+      'Built the USV subsystem and completed hardware assembly, wiring, debugging, and parameter tuning.',
+      'Developed USV-side code and integrated ROS2, MAVLink, MAVROS, and ArduPilot workflows.',
+      'Connected the QGC-derived ground station to the USV communication and control chain.',
+    ],
+    evidence: [
+      'The public demo records physical USV motion control, mode switching, following, and circling behaviors.',
+      'The complete configuration includes Jetson Orin Nano, LiDAR, YOLOv8 perception, and DWA obstacle avoidance.',
+      'Technical documentation and the architecture diagram further verify the communication, control, and propulsion chain.',
+    ],
+    limitations: [
+      'The current public demo does not show YOLOv8 or DWA functionality.',
+      'My responsibilities focused on the USV and system integration; UAV-side implementation is not presented as my contribution.',
+    ],
+    links: [{ label: 'Watch the public UAV-USV demo', href: publicLinks.uavDemo, kind: 'video' }],
+  },
+  'thermal-control': {
+    title: 'Multi-Channel Thermal Measurement & Control Instrument',
+    shortTitle: 'Multi-Channel Thermal Controller',
+    category: 'Embedded Control / Measurement System',
+    tagline: 'A complete thermal-control prototype from sensor measurement to control algorithms and host software.',
+    summary: 'Developed a working STM32H743-based prototype with C/C++ firmware and a Python host interface.',
+    outcome: 'Representative PT100 tests covered setpoints from 100 to 300 degrees Celsius.',
+    role: 'Project lead and embedded-control developer; I wrote all lower-level firmware.',
+    imageAlt: 'Python temperature-control interface at a 150-degree Celsius setpoint',
+    facts: ['Undergraduate innovation project completed', 'Complete firmware', 'Representative tests'],
+    challenge: 'Multi-channel temperature measurement required coordinating sensor readings, control stability, parameter tuning, serial communication, and host-side visualization.',
+    flow: ['PT100 / bridge', 'ADC sampling', 'STM32H743', 'PID / filtering', 'PWM output', 'Python host application'],
+    contributions: [
+      'Independently wrote all lower-level C/C++ firmware and completed hardware integration.',
+      'Implemented auto-tuning PID, Lambda tuning, integral anti-windup, and Kalman filtering.',
+      'Replaced the originally planned LabVIEW interface with Python for more flexible integration.',
+    ],
+    evidence: [
+      'The undergraduate innovation project was formally completed.',
+      'Across 100-300 degree Celsius setpoints, overshoot remained within 2 degrees Celsius.',
+      'After stabilization, fluctuation remained within 0.2 degrees Celsius.',
+    ],
+    limitations: ['The public page presents representative PT100 tests and does not generalize a single operating point to every condition.'],
+    links: [],
+  },
+  'vr-digital-twin': {
+    title: 'Fusion Tokamak VR Digital Twin',
+    shortTitle: 'Fusion VR Digital Twin',
+    category: 'Digital Twin / XR Interaction',
+    tagline: 'Deploying diagnostic data, scientific computing, and immersive interaction to a physical Quest 3 headset.',
+    summary: 'Built a fusion tokamak digital twin in Unity, connected dynamic diagnostic data and related computation scripts to an XR scene, and deployed it to Meta Quest 3.',
+    outcome: 'Completed a VR digital-twin demo running on a physical Quest 3 headset.',
+    role: 'Project lead and XR interaction developer; contributed to PINN-related implementation.',
+    imageAlt: 'Fusion tokamak digital twin running in VR',
+    architectureAlt: 'Fusion tokamak VR digital-twin architecture',
+    facts: ['Physical Quest 3', 'Dynamic diagnostic data', 'Public demo'],
+    challenge: 'Scientific data, computation scripts, and 3D models needed clear correspondence inside an interactive XR scene while remaining deployable on physical hardware.',
+    flow: ['Diagnostic data', 'Data / computation scripts', 'Unity scene', 'XR interaction', 'Physical Quest 3'],
+    contributions: [
+      'Organized dynamic diagnostic tables and corresponding data and computation scripts, then connected them to the Unity scene.',
+      'Implemented XR interactions and PINN-related computing.',
+      'Completed physical Meta Quest 3 deployment and a public demonstration.',
+    ],
+    evidence: [
+      'A public Bilibili video shows the VR system running.',
+      'The APK can be shared privately to verify the Quest 3 deployment.',
+      'Dynamic tables, data integration, and user interaction form a complete demonstration chain.',
+    ],
+    limitations: ['Engineering drawings and non-public laboratory assets are not released.'],
+    links: [{ label: 'Watch the public VR demo', href: publicLinks.vrDemo, kind: 'video' }],
+  },
+  emotender: {
+    title: 'EmoTender Emotion-Aware Bartending Robot',
+    shortTitle: 'EmoTender',
+    category: 'AI Agent / Robot Interaction',
+    tagline: 'Turning natural conversation into explainable drink concepts and physical robot delivery.',
+    summary: 'Built an emotional conversation, drink recommendation, structured robot control, and physical delivery pipeline during a 48-hour hackathon.',
+    outcome: 'Completed reception, following, conversation, emotion analysis, drink co-creation, grasping, and delivery.',
+    role: 'Software backend and robot-side development',
+    imageAlt: 'EmoTender emotion-aware bartending robot project',
+    facts: ['48-hour hackathon', 'Agent + Robot', 'Public repository'],
+    challenge: 'The robot must convert natural descriptions of emotions and experiences into a validated drink concept, expression, dialogue, and deterministic actions rather than execute unconstrained natural language.',
+    flow: ['Voice / text input', 'Agent reasoning', 'Structured control_json', 'WebSocket', 'Robot actions', 'Drink delivery'],
+    contributions: [
+      'Built the FastAPI Agent backend, short-term dialogue context, recommendation results, and local user-profile pipeline.',
+      'Built robot-side real-time communication, visual following, expression states, grasping, and delivery flows.',
+      'Separated language-model reasoning from deterministic execution through structured fields, with manual input and teleoperation fallbacks.',
+    ],
+    evidence: [
+      'Voice or text input, multi-turn emotional dialogue, structured control, dynamic expressions, and personalized recommendations were operational.',
+      'Visual following, grasping, and delivery completed the on-site handoff loop.',
+      'The public repository includes the Agent backend, Android APK, frontend, and tests.',
+    ],
+    limitations: [
+      'Stable, continuous liquid pouring by the robot arm is not complete.',
+      'Open-table free grasping, recovery from liquid-handling failures, and preparation without staff involvement remain incomplete.',
+    ],
+    links: [
+      { label: 'Open the EmoTender GitHub repository', href: publicLinks.emotender, kind: 'code' },
+      { label: 'Read the EmoTender project retrospective', href: publicLinks.emotenderArticle, kind: 'article' },
+    ],
+  },
 }
 
+export const systemsEn = systems.map((system) => ({
+  ...system,
+  ...systemTranslationsEn[system.slug],
+}))
+
+export function getSystems(language = 'zh') {
+  return language === 'en' ? systemsEn : systems
+}
+
+export function getSystem(slug, language = 'zh') {
+  return getSystems(language).find((system) => system.slug === slug)
+}

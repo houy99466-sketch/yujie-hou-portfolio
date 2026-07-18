@@ -1,10 +1,13 @@
 import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 export function RelatedLinks({ title, items, basePath }) {
+  const { copy } = useLanguage()
+
   return (
     <section className="related-section" aria-labelledby="related-title">
-      <p className="eyebrow">继续查看</p>
+      <p className="eyebrow">{copy.shared.continue}</p>
       <h2 id="related-title">{title}</h2>
       <div className="related-list">
         {items.map((item) => (
@@ -18,4 +21,3 @@ export function RelatedLinks({ title, items, basePath }) {
     </section>
   )
 }
-

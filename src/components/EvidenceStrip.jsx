@@ -1,6 +1,10 @@
-export function EvidenceStrip({ items, label = '项目证据' }) {
+import { useLanguage } from '../i18n/LanguageContext.jsx'
+
+export function EvidenceStrip({ items, label }) {
+  const { copy } = useLanguage()
+
   return (
-    <div className="evidence-strip" aria-label={label}>
+    <div className="evidence-strip" aria-label={label ?? copy.shared.projectEvidence}>
       {items.map((item, index) => (
         <span key={item}>
           <b>0{index + 1}</b>
@@ -10,4 +14,3 @@ export function EvidenceStrip({ items, label = '项目证据' }) {
     </div>
   )
 }
-

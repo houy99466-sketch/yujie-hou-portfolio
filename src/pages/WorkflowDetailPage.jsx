@@ -4,34 +4,36 @@ import { DetailLayout, DetailSection } from '../components/DetailLayout.jsx'
 import { FlowDiagram } from '../components/FlowDiagram.jsx'
 import { PublicLinksSection } from '../components/PublicLinksSection.jsx'
 import { RelatedLinks } from '../components/RelatedLinks.jsx'
-import { getWorkflow, workflows } from '../data/workflows.js'
+import { getWorkflow, getWorkflows } from '../data/workflows.js'
+import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 export function WorkflowDetailPage() {
   const { slug } = useParams()
-  const workflow = getWorkflow(slug)
+  const { language, copy } = useLanguage()
+  const workflow = getWorkflow(slug, language)
 
   if (!workflow) return <Navigate to="/ai-workflows" replace />
 
-  const related = workflows.filter((item) => item.slug !== workflow.slug)
+  const related = getWorkflows(language).filter((item) => item.slug !== workflow.slug)
 
   return (
-    <DetailLayout parentHref="/ai-workflows" parentLabel="返回 AI 工具流" item={workflow}>
-      <DetailSection id="workflow-problem" number="01" title="它解决什么问题">
+    <DetailLayout parentHref="/ai-workflows" parentLabel={copy.workflowDetail.back} item={workflow}>
+      <DetailSection id="workflow-problem" number="01" title={copy.workflowDetail.problem}>
         <p className="detail-lead">{workflow.summary}</p>
         <p>{workflow.problem}</p>
       </DetailSection>
 
-      <DetailSection id="workflow-flow" number="02" title="核心工作流" tone="soft">
-        <FlowDiagram steps={workflow.workflow} label={`${workflow.title}核心工作流`} />
+      <DetailSection id="workflow-flow" number="02" title={copy.workflowDetail.coreFlow} tone="soft">
+        <FlowDiagram steps={workflow.workflow} label={`${workflow.title} ${copy.workflowDetail.coreFlow}`} />
         {workflow.alternateWorkflow.length ? (
           <>
-            <h3 className="subsection-title">显式深度模式</h3>
-            <FlowDiagram steps={workflow.alternateWorkflow} label={`${workflow.title}显式深度模式`} />
+            <h3 className="subsection-title">{copy.workflowDetail.deepMode}</h3>
+            <FlowDiagram steps={workflow.alternateWorkflow} label={`${workflow.title} ${copy.workflowDetail.deepMode}`} />
           </>
         ) : null}
       </DetailSection>
 
-      <DetailSection id="workflow-implementation" number="03" title="关键实现">
+      <DetailSection id="workflow-implementation" number="03" title={copy.workflowDetail.implementation}>
         <ol className="numbered-evidence">
           {workflow.implementation.map((item, index) => (
             <li key={item}>
@@ -44,16 +46,16 @@ export function WorkflowDetailPage() {
 
       <PublicLinksSection links={workflow.links} />
 
-      <DetailSection id="workflow-value" number="04" title="项目价值" tone="ink">
+      <DetailSection id="workflow-value" number="04" title={copy.workflowDetail.value} tone="ink">
         <p className="detail-lead">{workflow.value}</p>
-        <div className="output-list" aria-label="项目输出">
+        <div className="output-list" aria-label={copy.workflowDetail.outputs}>
           {workflow.outputs.map((output) => (
             <span key={output}>{output}</span>
           ))}
         </div>
       </DetailSection>
 
-      <RelatedLinks title="其他 AI 工具流" items={related} basePath="/ai-workflows" />
+      <RelatedLinks title={copy.workflowDetail.related} items={related} basePath="/ai-workflows" />
     </DetailLayout>
   )
 }

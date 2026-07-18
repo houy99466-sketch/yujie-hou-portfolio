@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 
 import { ScrollManager } from './components/ScrollManager.jsx'
 import { SiteLayout } from './components/SiteLayout.jsx'
+import { LanguageProvider } from './i18n/LanguageContext.jsx'
 import { ContactPage } from './pages/ContactPage.jsx'
 import { HomePage } from './pages/HomePage.jsx'
 import { ProfilePage } from './pages/ProfilePage.jsx'
@@ -13,22 +14,24 @@ import { WorkflowsPage } from './pages/WorkflowsPage.jsx'
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <ScrollManager />
-      <Routes>
-        <Route element={<SiteLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="systems" element={<SystemsPage />} />
-          <Route path="systems/:slug" element={<SystemDetailPage />} />
-          <Route path="ai-workflows" element={<WorkflowsPage />} />
-          <Route path="ai-workflows/:slug" element={<WorkflowDetailPage />} />
-          <Route path="skills" element={<SkillsPage />} />
-          <Route path="profile" element={<ProfilePage />} />
-          <Route path="contact" element={<ContactPage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <LanguageProvider>
+      <BrowserRouter>
+        <ScrollManager />
+        <Routes>
+          <Route element={<SiteLayout />}>
+            <Route index element={<HomePage />} />
+            <Route path="systems" element={<SystemsPage />} />
+            <Route path="systems/:slug" element={<SystemDetailPage />} />
+            <Route path="ai-workflows" element={<WorkflowsPage />} />
+            <Route path="ai-workflows/:slug" element={<WorkflowDetailPage />} />
+            <Route path="skills" element={<SkillsPage />} />
+            <Route path="profile" element={<ProfilePage />} />
+            <Route path="contact" element={<ContactPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </LanguageProvider>
   )
 }
 

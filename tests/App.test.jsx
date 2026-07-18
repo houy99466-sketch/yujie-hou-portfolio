@@ -14,6 +14,46 @@ function renderAt(path) {
 }
 
 describe('multi-page portfolio', () => {
+  test('switches the homepage to English and persists the language choice', async () => {
+    const { unmount } = renderAt('/')
+
+    expect(screen.getByRole('heading', { level: 1, name: '侯宇杰' })).toBeInTheDocument()
+    expect(window.localStorage.getItem('portfolio-language')).toBeNull()
+
+    fireEvent.click(screen.getByRole('button', { name: 'English' }))
+
+    expect(screen.getByRole('heading', { level: 1, name: 'Yujie Hou' })).toBeInTheDocument()
+    expect(screen.getByRole('navigation', { name: 'Primary navigation' })).toHaveTextContent('Home')
+    expect(screen.getByRole('link', { name: 'Explore engineering systems' })).toHaveAttribute(
+      'href',
+      '/systems',
+    )
+    expect(document.documentElement.lang).toBe('en')
+    expect(window.localStorage.getItem('portfolio-language')).toBe('en')
+
+    unmount()
+    renderAt('/')
+
+    expect(screen.getByRole('heading', { level: 1, name: 'Yujie Hou' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'English' })).toHaveAttribute('aria-pressed', 'true')
+  })
+
+  test.each([
+    ['/systems/emotender', 'EmoTender Emotion-Aware Bartending Robot', 'Software backend and robot-side development'],
+    ['/ai-workflows/smart-schedule', 'Feishu Smart Calendar', 'Natural-language schedule input'],
+    ['/skills', 'Capability Map', 'Autonomous Systems'],
+    ['/profile', 'Experience & Achievements', 'Team lead'],
+    ['/contact', 'Get in Touch', 'Sun Yat-sen University Sino-French Institute of Nuclear Engineering and Technology & School of Business'],
+  ])('restores English content on %s', async (path, heading, proof) => {
+    window.localStorage.setItem('portfolio-language', 'en')
+
+    renderAt(path)
+
+    expect(screen.getByRole('heading', { level: 1, name: heading })).toBeInTheDocument()
+    expect(screen.getByText(new RegExp(proof))).toBeInTheDocument()
+    await waitFor(() => expect(document.documentElement.lang).toBe('en'))
+  })
+
   test('renders a compact homepage with the six-page navigation and contact entry points', () => {
     renderAt('/')
 
