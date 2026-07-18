@@ -7,6 +7,7 @@ import { getWorkflow } from '../data/workflows.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 function getPageTitle(pathname, language, copy) {
+  const normalizedPathname = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname
   const siteMeta = getSiteMeta(language)
   const routeTitles = {
     '/': siteMeta.title,
@@ -16,13 +17,13 @@ function getPageTitle(pathname, language, copy) {
     '/profile': `${copy.routeTitles.profile} | ${siteMeta.name}`,
     '/contact': `${copy.routeTitles.contact} | ${siteMeta.name}`,
   }
-  if (routeTitles[pathname]) return routeTitles[pathname]
-  if (pathname.startsWith('/systems/')) {
-    const system = getSystem(pathname.slice('/systems/'.length), language)
+  if (routeTitles[normalizedPathname]) return routeTitles[normalizedPathname]
+  if (normalizedPathname.startsWith('/systems/')) {
+    const system = getSystem(normalizedPathname.slice('/systems/'.length), language)
     return system ? `${system.title} | ${siteMeta.name}` : siteMeta.title
   }
-  if (pathname.startsWith('/ai-workflows/')) {
-    const workflow = getWorkflow(pathname.slice('/ai-workflows/'.length), language)
+  if (normalizedPathname.startsWith('/ai-workflows/')) {
+    const workflow = getWorkflow(normalizedPathname.slice('/ai-workflows/'.length), language)
     return workflow ? `${workflow.title} | ${siteMeta.name}` : siteMeta.title
   }
   return siteMeta.title

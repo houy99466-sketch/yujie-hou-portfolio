@@ -54,6 +54,16 @@ describe('multi-page portfolio', () => {
     await waitFor(() => expect(document.documentElement.lang).toBe('en'))
   })
 
+  test('sets the localized title on a trailing-slash project route', async () => {
+    window.localStorage.setItem('portfolio-language', 'en')
+
+    renderAt('/systems/emotender/')
+
+    await waitFor(() =>
+      expect(document.title).toBe('EmoTender Emotion-Aware Bartending Robot | Yujie Hou'),
+    )
+  })
+
   test('renders a compact homepage with the six-page navigation and contact entry points', () => {
     renderAt('/')
 
