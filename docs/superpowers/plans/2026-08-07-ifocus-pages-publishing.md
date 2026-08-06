@@ -336,14 +336,10 @@ jobs:
         with:
           repository: houy99466-sketch/yujie-hou-portfolio
           path: source
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 11.9.0
       - uses: actions/setup-node@v4
         with:
-          node-version: 24
-          cache: pnpm
-          cache-dependency-path: source/pnpm-lock.yaml
+          node-version: 24.14.0
+      - run: npm install --global pnpm@11.9.0
       - run: pnpm install --frozen-lockfile
         working-directory: source
       - run: pnpm test
@@ -354,8 +350,8 @@ jobs:
         working-directory: source
       - run: pnpm export:pages -- dist ../site
         working-directory: source
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v4
+      - uses: actions/configure-pages@v4
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: site
       - uses: actions/deploy-pages@v4
