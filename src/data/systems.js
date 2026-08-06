@@ -136,6 +136,43 @@ export const systems = [
       { label: '阅读 EmoTender 项目复盘', href: publicLinks.emotenderArticle, kind: 'article' },
     ],
   },
+  {
+    slug: 'ifocus',
+    index: '05',
+    title: 'iFocus：面向专注状态管理的 Physical AI 系统',
+    shortTitle: 'iFocus 专注助手',
+    category: 'Physical AI / 人机交互',
+    tagline: '把任务目标、电脑行为、屏幕内容、视觉状态和物理反馈连接成可运行的闭环。',
+    summary:
+      '在 Hong Kong Physical AI Hackathon 中搭建 PC 端注意力检测服务，综合前台进程、屏幕截图分析和摄像头视觉追踪判断用户专注状态，并为手机和 K3 机器人提供结构化 API。',
+    outcome: '获 K3 智算先鋒獎，完成 PC–手机–K3 三端联调。',
+    role: 'PC 端技术架构与注意力检测主链路开发',
+    image: '/assets/ifocus-cover.webp',
+    imageAlt: 'iFocus 团队在 Hong Kong Physical AI Hackathon 获奖合影',
+    facts: ['Hackathon 获奖', '三端联调', '多模态检测'],
+    stack: ['Python', 'Flask', 'MediaPipe', 'OpenCV', 'DeepSeek API', 'K3', 'PIPER X'],
+    challenge:
+      '不是简单计时，而是综合判断用户是否仍在任务状态：进程检测判断软件是否合理，屏幕分析判断内容是否相关，视觉追踪判断用户是否面向屏幕。',
+    flow: ['手机创建任务', 'PC 任务理解(LLM)', '前台进程检测', '屏幕截图分析', '摄像头视觉追踪', 'K3 读取状态并反馈'],
+    contributions: [
+      '设计 PC、手机、K3 之间的 HTTP 拉取式通信协议，PC 作为唯一状态中心。',
+      '实现 PC 后端服务，提供任务创建、暂停、继续、停止和状态读取接口。',
+      '接入 LLM API 实现任务理解，将自然语言任务映射为允许软件范围。',
+      '实现前台进程检测、主屏幕截图分析和摄像头视觉追踪三条检测链路。',
+      '处理任务生命周期、视觉进程异常恢复和跨端联调问题。',
+    ],
+    evidence: [
+      'Hong Kong Physical AI Hackathon 现场完成三端联调并获奖。',
+      'PC 每 1 秒更新注意力缓存，输出结构化 focus_state 与持续时间。',
+      '手机和 K3 均通过标准 HTTP GET 请求读取状态，不依赖 PC 主动推送。',
+    ],
+    limitations: [
+      '屏幕分析依赖外部模型服务，模型可用性影响 scene_label 准确度。',
+      '视觉追踪在复杂光照或多人场景下的稳定性有待提升。',
+      '当前为 Hackathon 原型，尚未经过长期使用验证。',
+    ],
+    links: [{ label: '观看 iFocus 项目演示', href: publicLinks.ifocusDemo, kind: 'video' }],
+  },
 ]
 
 const systemTranslationsEn = {
@@ -249,6 +286,37 @@ const systemTranslationsEn = {
       { label: 'Open the EmoTender GitHub repository', href: publicLinks.emotender, kind: 'code' },
       { label: 'Read the EmoTender project retrospective', href: publicLinks.emotenderArticle, kind: 'article' },
     ],
+  },
+  ifocus: {
+    title: 'iFocus: Physical AI System for Attention State Management',
+    shortTitle: 'iFocus Attention Assistant',
+    category: 'Physical AI / Human-Computer Interaction',
+    tagline: 'Connecting task goals, computer behavior, screen content, visual state, and physical feedback into an operational closed loop.',
+    summary: 'Built a PC-side attention detection service at the Hong Kong Physical AI Hackathon, combining foreground process detection, screen capture analysis, and camera-based visual tracking to determine user focus state, with structured APIs for a phone and K3 robot.',
+    outcome: 'Won the K3 Smart Computing Pioneer Award and completed PC–phone–K3 integration.',
+    role: 'PC-side technical architecture and attention detection pipeline development',
+    imageAlt: 'iFocus team receiving the award at the Hong Kong Physical AI Hackathon',
+    facts: ['Hackathon award', 'Three-device integration', 'Multi-modal detection'],
+    challenge: 'Beyond simple timing: process detection checks if the software is reasonable, screen analysis checks if the content is task-relevant, and visual tracking checks if the user is facing the screen.',
+    flow: ['Phone creates task', 'PC task understanding (LLM)', 'Foreground process detection', 'Screen capture analysis', 'Camera visual tracking', 'K3 reads state and responds'],
+    contributions: [
+      'Designed the HTTP pull-based communication protocol between PC, phone, and K3, with PC as the single state authority.',
+      'Implemented the PC backend service with task creation, pause, resume, stop, and state query endpoints.',
+      'Integrated LLM API for task understanding, mapping natural-language tasks to allowed software ranges.',
+      'Implemented three detection pipelines: foreground process detection, screen capture analysis, and camera visual tracking.',
+      'Handled task lifecycle management, visual process error recovery, and cross-device integration debugging.',
+    ],
+    evidence: [
+      'Completed three-device integration and won an award at the Hong Kong Physical AI Hackathon.',
+      'PC updates the attention cache every second, outputting structured focus_state and state duration.',
+      'Both phone and K3 read state via standard HTTP GET requests without relying on PC push.',
+    ],
+    limitations: [
+      'Screen analysis depends on external model service availability, which affects scene_label accuracy.',
+      'Visual tracking stability under complex lighting or multi-person scenarios needs improvement.',
+      'Current version is a hackathon prototype without long-term usage validation.',
+    ],
+    links: [{ label: 'Watch the iFocus project demo', href: publicLinks.ifocusDemo, kind: 'video' }],
   },
 }
 

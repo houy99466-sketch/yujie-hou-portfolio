@@ -66,6 +66,7 @@ export const publicLinks = {
   workflowArticle: 'https://mp.weixin.qq.com/s/ZEpEVx00cJHjRRiILEhhig',
   scheduleArticle: 'https://mp.weixin.qq.com/s/Bp7Eo87HWZw29NhT_oQwyQ',
   emotenderArticle: 'https://mp.weixin.qq.com/s/eDVuXLq-3auV4C-GI5fKLg',
+  ifocusDemo: 'https://www.bilibili.com/video/BV16qMC6LEnj/',
 }
 
 export const publicArticles = [
@@ -119,4 +120,3 @@ export function getContactInfo(language = 'zh') {
 export function getPublicArticles(language = 'zh') {
   return language === 'en' ? publicArticlesEn : publicArticles
 }
-
