@@ -120,4 +120,3 @@ export function getContactInfo(language = 'zh') {
 export function getPublicArticles(language = 'zh') {
   return language === 'en' ? publicArticlesEn : publicArticles
 }
-
