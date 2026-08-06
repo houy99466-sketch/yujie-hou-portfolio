@@ -19,6 +19,7 @@ export const honors = [
   { title: 'MCM/ICM 美国大学生数学建模竞赛 Meritorious Winner' },
   { title: '亚太地区数学建模中文赛二等奖' },
   { title: '2024 年中法核校友奖学金' },
+  { title: 'Hong Kong Physical AI Hackathon — K3 智算先鋒獎', role: 'PC 端技术负责人' },
 ]
 
 export const profileSummary = {
@@ -49,6 +50,7 @@ export const honorsEn = [
   { title: 'MCM/ICM Meritorious Winner' },
   { title: 'Second Prize, Asia-Pacific Chinese Mathematical Modeling Competition' },
   { title: 'Sino-French Nuclear Alumni Scholarship, 2024' },
+  { title: 'Hong Kong Physical AI Hackathon — K3 Smart Computing Pioneer Award', role: 'PC-side technical lead' },
 ]
 
 export const profileSummaryEn = {
