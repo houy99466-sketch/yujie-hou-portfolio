@@ -51,4 +51,13 @@ Cloudflare provides a public `*.pages.dev` address. A custom domain is optional.
 
 ### GitHub Pages
 
-Use a GitHub Actions workflow to run `pnpm build` and publish `dist`. On GitHub Free, the repository used for Pages must be public.
+The `houy99466-sketch.github.io` workflow checks out this repository, validates it, builds it, and exports a complete Pages artifact. Every application route receives the same built `index.html`, so direct visits and refreshes do not load stale bundles.
+
+To generate the same artifact locally:
+
+```powershell
+pnpm build
+pnpm export:pages -- dist "..\yujie-hou-portfolio-pages-export"
+```
+
+The output includes `.nojekyll`, `404.html`, and static entry files for every system and workflow route derived from the source data.
