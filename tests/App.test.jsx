@@ -24,6 +24,7 @@ describe('multi-page portfolio', () => {
 
     expect(screen.getByRole('heading', { level: 1, name: 'Yujie Hou' })).toBeInTheDocument()
     expect(screen.getByRole('navigation', { name: 'Primary navigation' })).toHaveTextContent('Home')
+    expect(screen.getByText('5 systems · 3 tools')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Explore engineering systems' })).toHaveAttribute(
       'href',
       '/systems',
@@ -40,6 +41,7 @@ describe('multi-page portfolio', () => {
 
   test.each([
     ['/systems/emotender', 'EmoTender Emotion-Aware Bartending Robot', 'Software backend and robot-side development'],
+    ['/systems/ifocus', 'iFocus: Physical AI System for Attention State Management', 'PC-side technical architecture and attention detection pipeline development'],
     ['/ai-workflows/smart-schedule', 'Feishu Smart Calendar', 'Natural-language schedule input'],
     ['/skills', 'Capability Map', 'Autonomous Systems'],
     ['/profile', 'Experience & Achievements', 'Team lead'],
@@ -114,10 +116,11 @@ describe('multi-page portfolio', () => {
     expect(await screen.findByText('微信已复制')).toBeInTheDocument()
   })
 
-  test('lists all four engineering systems on the systems page', () => {
+  test('lists all five engineering systems on the systems page', () => {
     renderAt('/systems')
 
     expect(screen.getByRole('heading', { level: 1, name: '工程系统' })).toBeInTheDocument()
+    expect(screen.getByText('5 个项目 · 真实硬件 / 真机部署 / 公开仓库')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /无人机-无人船协同自主系统/ })).toHaveAttribute(
       'href',
       '/systems/uav-usv',
@@ -134,6 +137,9 @@ describe('multi-page portfolio', () => {
       'href',
       '/systems/emotender',
     )
+    expect(
+      screen.getByRole('link', { name: /iFocus：面向专注状态管理的 Physical AI 系统/ }),
+    ).toHaveAttribute('href', '/systems/ifocus')
     expect(
       screen.getByRole('navigation', { name: '主导航' }).querySelector('[aria-current="page"]'),
     ).toHaveTextContent('工程系统')
