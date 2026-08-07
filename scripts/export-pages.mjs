@@ -1,6 +1,7 @@
 import { cp, mkdir, readFile, stat, writeFile } from 'node:fs/promises'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import process from 'node:process'
 
 import { systems } from '../src/data/systems.js'
 import { workflows } from '../src/data/workflows.js'
