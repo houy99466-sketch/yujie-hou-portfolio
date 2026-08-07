@@ -66,6 +66,7 @@ export const publicLinks = {
   workflowArticle: 'https://mp.weixin.qq.com/s/ZEpEVx00cJHjRRiILEhhig',
   scheduleArticle: 'https://mp.weixin.qq.com/s/Bp7Eo87HWZw29NhT_oQwyQ',
   emotenderArticle: 'https://mp.weixin.qq.com/s/eDVuXLq-3auV4C-GI5fKLg',
+  emotenderUIDemo: 'https://www.bilibili.com/video/BV1HS3S6GEz1/',
   ifocusDemo: 'https://www.bilibili.com/video/BV16qMC6LEnj/',
 }
 

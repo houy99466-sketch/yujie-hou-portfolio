@@ -40,7 +40,7 @@ describe('multi-page portfolio', () => {
   })
 
   test.each([
-    ['/systems/emotender', 'EmoTender Emotion-Aware Bartending Robot', 'Software backend and robot-side development'],
+    ['/systems/emotender', 'EmoTender: Emotion-Aware Bartending Robot', 'Project lead and technical architecture design'],
     ['/systems/ifocus', 'iFocus: Physical AI System for Attention State Management', 'PC-side technical architecture and attention detection pipeline development'],
     ['/ai-workflows/smart-schedule', 'Feishu Smart Calendar', 'Natural-language schedule input'],
     ['/skills', 'Capability Map', 'Autonomous Systems'],
@@ -62,7 +62,7 @@ describe('multi-page portfolio', () => {
     renderAt('/systems/emotender/')
 
     await waitFor(() =>
-      expect(document.title).toBe('EmoTender Emotion-Aware Bartending Robot | Yujie Hou'),
+      expect(document.title).toBe('EmoTender: Emotion-Aware Bartending Robot | Yujie Hou'),
     )
   })
 
@@ -133,7 +133,9 @@ describe('multi-page portfolio', () => {
       'href',
       '/systems/vr-digital-twin',
     )
-    expect(screen.getByRole('link', { name: /EmoTender 情绪调酒机器人/ })).toHaveAttribute(
+    expect(
+      screen.getByRole('link', { name: /EmoTender 情绪调酒机器人/ }),
+    ).toHaveAttribute(
       'href',
       '/systems/emotender',
     )
@@ -145,16 +147,20 @@ describe('multi-page portfolio', () => {
     ).toHaveTextContent('工程系统')
   })
 
-  test('presents EmoTender as a full project with verified role and boundary', () => {
+  test('presents EmoTender as a full project with verified role, boundary, and links', () => {
     renderAt('/systems/emotender')
 
     expect(
       screen.getByRole('heading', { level: 1, name: 'EmoTender 情绪调酒机器人' }),
     ).toBeInTheDocument()
-    expect(screen.getByText('负责软件后端和机器人侧的全部工作')).toBeInTheDocument()
-    expect(screen.getByText(/语音或文字入口、多轮情绪对话、结构化控制/)).toBeInTheDocument()
+    expect(screen.getByText(/项目统筹与技术架构设计/)).toBeInTheDocument()
+    expect(screen.getByText(/硬件版完成接待/)).toBeInTheDocument()
     expect(screen.getByText(/稳定连续倒液仍未完成/)).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: '打开 EmoTender GitHub 仓库' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: '观看软件交互 Demo' })).toHaveAttribute(
+      'href',
+      'https://www.bilibili.com/video/BV1HS3S6GEz1/',
+    )
+    expect(screen.getByRole('link', { name: '打开 GitHub 仓库' })).toHaveAttribute(
       'href',
       'https://github.com/houy99466-sketch/emotender_release',
     )
@@ -183,11 +189,11 @@ describe('multi-page portfolio', () => {
 
     const publicLinks = screen.getByRole('region', { name: '公开链接' })
     const boundary = screen.getByRole('heading', { level: 2, name: '证据与边界' })
-    expect(screen.getByRole('link', { name: '打开 EmoTender GitHub 仓库' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: '打开 GitHub 仓库' })).toHaveAttribute(
       'href',
       'https://github.com/houy99466-sketch/emotender_release',
     )
-    expect(screen.getByRole('link', { name: '阅读 EmoTender 项目复盘' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: '阅读项目复盘' })).toHaveAttribute(
       'href',
       'https://mp.weixin.qq.com/s/eDVuXLq-3auV4C-GI5fKLg',
     )
