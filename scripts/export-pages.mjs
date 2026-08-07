@@ -47,7 +47,12 @@ export async function exportPages(distDirectory, outputDirectory) {
 const currentFile = fileURLToPath(import.meta.url)
 
 if (process.argv[1] && resolve(process.argv[1]) === currentFile) {
-  const [distDirectory, outputDirectory] = process.argv.slice(2)
+  const cliArguments = process.argv.slice(2)
+  if (cliArguments[0] === '--') {
+    cliArguments.shift()
+  }
+
+  const [distDirectory, outputDirectory] = cliArguments
   if (!distDirectory || !outputDirectory) {
     throw new Error('Usage: node scripts/export-pages.mjs <dist-directory> <output-directory>')
   }

@@ -53,4 +53,22 @@ describe('GitHub Pages exporter', () => {
       expect(readFileSync(join(outputDirectory, route, 'index.html'), 'utf8')).toBe(html)
     }
   })
+
+  test('accepts the pnpm argument separator before directory arguments', () => {
+    const root = mkdtempSync(join(tmpdir(), 'yujie-hou-pages-'))
+    temporaryDirectories.push(root)
+    const distDirectory = join(root, 'dist')
+    const outputDirectory = join(root, 'site')
+    mkdirSync(distDirectory, { recursive: true })
+    writeFileSync(join(distDirectory, 'index.html'), '<!doctype html>')
+
+    const result = spawnSync(
+      process.execPath,
+      ['scripts/export-pages.mjs', '--', distDirectory, outputDirectory],
+      { encoding: 'utf8' },
+    )
+
+    expect(result.status, result.stderr).toBe(0)
+    expect(existsSync(join(outputDirectory, 'systems', 'ifocus', 'index.html'))).toBe(true)
+  })
 })
