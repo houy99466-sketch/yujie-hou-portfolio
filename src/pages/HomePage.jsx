@@ -16,10 +16,9 @@ export function HomePage() {
   return (
     <>
       <section className="home-hero" aria-labelledby="home-title">
-        <div className="home-hero-backdrop" aria-hidden="true" />
         <div className="shell home-hero-layout">
           <div className="home-hero-copy">
-            <p className="eyebrow eyebrow-light">Portfolio · 2026</p>
+            <p className="eyebrow">Portfolio · 2026</p>
             <h1 id="home-title">{siteMeta.name}</h1>
             <p className="home-role">{copy.home.role}</p>
             <p className="home-statement">{copy.home.statement}</p>
@@ -28,39 +27,31 @@ export function HomePage() {
                 {copy.home.exploreSystems}
                 <ArrowRight aria-hidden="true" size={18} />
               </Link>
-              <Link className="action action-ghost-light" to="/contact">
+              <Link className="action action-outline" to="/contact">
                 <Mail aria-hidden="true" size={18} />
                 {copy.home.welcome}
               </Link>
             </div>
+            <div className="home-meta" aria-label={copy.home.overview}>
+              <span>{copy.home.identity}</span>
+              <span>{copy.home.publicCount}</span>
+            </div>
           </div>
-          <aside className="home-index" aria-label={copy.home.overview}>
-            <div>
-              <span>{copy.home.identityLabel}</span>
-              <strong>{copy.home.identity}</strong>
-            </div>
-            <div>
-              <span>{copy.home.focusLabel}</span>
-              <strong>{copy.home.focus}</strong>
-            </div>
-            <div>
-              <span>{copy.home.publicLabel}</span>
-              <strong>{copy.home.publicCount}</strong>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section className="home-proof-band" aria-label={copy.home.capabilityPath}>
-        <div className="shell home-proof-grid">
-          {copy.home.capabilities.map(
-            (item, index) => (
-              <span key={item}>
-                <b>0{index + 1}</b>
-                {item}
-              </span>
-            ),
-          )}
+          <figure className="home-hero-photo">
+            <img
+              src="/assets/physical-ai-hackathon-team.webp"
+              alt={copy.home.heroImageAlt}
+              width="2048"
+              height="1366"
+              fetchPriority="high"
+            />
+            <figcaption>
+              <span>{copy.home.heroImageCaption}</span>
+              <Link to="/systems/ifocus" aria-label={copy.home.heroImageLink}>
+                <ArrowRight aria-hidden="true" size={18} />
+              </Link>
+            </figcaption>
+          </figure>
         </div>
       </section>
 

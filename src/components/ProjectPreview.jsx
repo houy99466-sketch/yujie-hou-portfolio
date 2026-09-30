@@ -11,11 +11,11 @@ export function ProjectPreview({ system, priority = false }) {
             alt={system.imageAlt}
             loading={priority ? 'eager' : 'lazy'}
           />
-          <figcaption>{system.category}</figcaption>
         </figure>
         <div className="project-preview-copy">
           <span className="project-number">{system.index}</span>
           <div>
+            <p className="project-category">{system.category}</p>
             <h2>{system.title}</h2>
             <p>{system.tagline}</p>
           </div>
