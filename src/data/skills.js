@@ -36,10 +36,11 @@ export const skillGroups = [
     index: '04',
     title: '仿真与 AI 工具',
     description: '科学计算、沉浸式交互与 AI 原生工作流的组合。',
-    skills: ['Unity', 'Meta Quest 3', 'XR Interaction Toolkit', 'PINN 相关计算', 'Dify / Codex 工作流', 'GitHub 文档化'],
+    skills: ['PyTorch', '残差网络与消融实验', 'MoGe-2 / DA3 推理', 'Unity', 'Meta Quest 3', 'WebXR', 'PINN 相关计算', 'XR Interaction Toolkit'],
     evidence: [
       { label: '聚变托卡马克 VR 数字孪生', href: '/systems/vr-digital-twin' },
-      { label: 'AI 工具流', href: '/ai-workflows' },
+      { label: 'HL-2A 残差学习', href: '/systems/physics-residual-learning' },
+      { label: 'Quest 3 遥操作', href: '/systems/quest-teleoperation' },
     ],
   },
 ]
@@ -82,10 +83,11 @@ export const skillGroupsEn = [
     index: '04',
     title: 'Simulation & AI Tools',
     description: 'A combination of scientific computing, immersive interaction, and AI-native workflows.',
-    skills: ['Unity', 'Meta Quest 3', 'XR Interaction Toolkit', 'PINN-related computing', 'Dify / Codex workflows', 'GitHub documentation'],
+    skills: ['PyTorch', 'Residual networks & ablation', 'MoGe-2 / DA3 inference', 'Unity', 'Meta Quest 3', 'WebXR', 'PINN-related computing', 'XR Interaction Toolkit'],
     evidence: [
       { label: 'Fusion Tokamak VR Digital Twin', href: '/systems/vr-digital-twin' },
-      { label: 'AI Workflows', href: '/ai-workflows' },
+      { label: 'HL-2A Residual Learning', href: '/systems/physics-residual-learning' },
+      { label: 'Quest 3 Teleoperation', href: '/systems/quest-teleoperation' },
     ],
   },
 ]

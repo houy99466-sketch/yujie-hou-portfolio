@@ -9,6 +9,7 @@ export function ProjectPreview({ system, priority = false }) {
           <img
             src={system.image}
             alt={system.imageAlt}
+            style={{ objectFit: system.imageFit }}
             loading={priority ? 'eager' : 'lazy'}
           />
         </figure>

@@ -24,7 +24,7 @@ describe('multi-page portfolio', () => {
 
     expect(screen.getByRole('heading', { level: 1, name: 'Yujie Hou' })).toBeInTheDocument()
     expect(screen.getByRole('navigation', { name: 'Primary navigation' })).toHaveTextContent('Home')
-    expect(screen.getByText('5 systems · 3 tools')).toBeInTheDocument()
+    expect(screen.getByText('8 projects · 3 tools')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Explore engineering systems' })).toHaveAttribute(
       'href',
       '/systems',
@@ -116,11 +116,11 @@ describe('multi-page portfolio', () => {
     expect(await screen.findByText('微信已复制')).toBeInTheDocument()
   })
 
-  test('lists all five engineering systems on the systems page', () => {
+  test('lists all eight engineering systems on the systems page', () => {
     renderAt('/systems')
 
     expect(screen.getByRole('heading', { level: 1, name: '工程系统' })).toBeInTheDocument()
-    expect(screen.getByText('5 个项目 · 真实硬件 / 真机部署 / 公开仓库')).toBeInTheDocument()
+    expect(screen.getByText('8 个项目 · 真实硬件 / 深度学习 / 系统集成')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /无人机-无人船协同自主系统/ })).toHaveAttribute(
       'href',
       '/systems/uav-usv',

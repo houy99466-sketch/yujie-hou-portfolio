@@ -31,7 +31,7 @@ export function DetailLayout({ parentHref, parentLabel, item, children }) {
           </div>
           {item.image ? (
             <figure className="detail-media">
-              <img src={item.image} alt={item.imageAlt} loading="eager" />
+              <img src={item.image} alt={item.imageAlt} loading="eager" style={{ objectFit: item.imageFit }} />
             </figure>
           ) : (
             <div className="detail-monogram" aria-hidden="true">

@@ -8,7 +8,7 @@ import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 export function ProfilePage() {
   const { language, copy } = useLanguage()
-  const { education, honors, profileSummary } = getProfileData(language)
+  const { education, honors, profileSummary, publicExperience } = getProfileData(language)
 
   return (
     <>
@@ -54,6 +54,20 @@ export function ProfilePage() {
           </ol>
         </section>
       </div>
+
+      <section className="shell profile-section public-experience" aria-labelledby="public-experience-title">
+        <div className="profile-section-heading">
+          <span>03</span>
+          <h2 id="public-experience-title">{publicExperience.title}</h2>
+        </div>
+        <div className="timeline-list">
+          <article>
+            <h3>{publicExperience.name}</h3>
+            <p>{publicExperience.description}</p>
+            <Link className="section-more" to="/systems/ifocus">{publicExperience.linkLabel}<ArrowRight aria-hidden="true" size={18} /></Link>
+          </article>
+        </div>
+      </section>
 
       <section className="profile-contact" aria-labelledby="profile-contact-title">
         <div className="shell profile-contact-layout">

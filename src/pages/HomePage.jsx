@@ -39,10 +39,10 @@ export function HomePage() {
           </div>
           <figure className="home-hero-photo">
             <img
-              src="/assets/physical-ai-hackathon-team.webp"
+              src="/assets/spacemit-devcon-portrait.webp"
               alt={copy.home.heroImageAlt}
-              width="2048"
-              height="1366"
+              width="1800"
+              height="1350"
               fetchPriority="high"
             />
             <figcaption>

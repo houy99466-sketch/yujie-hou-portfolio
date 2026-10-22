@@ -3,6 +3,7 @@ import { Navigate, useParams } from 'react-router-dom'
 import { DetailLayout, DetailSection } from '../components/DetailLayout.jsx'
 import { FlowDiagram } from '../components/FlowDiagram.jsx'
 import { PublicLinksSection } from '../components/PublicLinksSection.jsx'
+import { ProjectGallery } from '../components/ProjectGallery.jsx'
 import { RelatedLinks } from '../components/RelatedLinks.jsx'
 import { getSystem, getSystems } from '../data/systems.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
@@ -47,6 +48,7 @@ export function SystemDetailPage() {
             <span key={item}>{item}</span>
           ))}
         </div>
+        <ProjectGallery images={system.gallery} />
       </DetailSection>
 
       <DetailSection id="contribution" number="03" title={copy.systemDetail.contribution}>

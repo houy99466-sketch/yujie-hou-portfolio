@@ -24,8 +24,8 @@ describe('site shell assets', () => {
   test('stores the iFocus cover locally and references it from the system data', () => {
     const systems = readFileSync('src/data/systems.js', 'utf8')
 
-    expect(existsSync('public/assets/ifocus-cover.webp')).toBe(true)
-    expect(systems).toContain("image: '/assets/ifocus-cover.webp'")
+    expect(existsSync('public/assets/spacemit-ifocus-exhibition.webp')).toBe(true)
+    expect(systems).toContain("image: '/assets/spacemit-ifocus-exhibition.webp'")
   })
 
   test('provides a static-host fallback for direct route visits', () => {

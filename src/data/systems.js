@@ -1,6 +1,8 @@
 import { publicLinks } from './site.js'
+import { octoberSystems, octoberSystemTranslationsEn } from './projects-202610.js'
 
 export const systems = [
+  ...octoberSystems,
   {
     slug: 'uav-usv',
     index: '01',
@@ -108,11 +110,11 @@ export const systems = [
     tagline: '从自然对话到饮品推荐，再到机器人实体交付——把情绪理解做成完整的软硬交互闭环。',
     summary:
       '分别在 48 小时硬件黑客松和小米高校黑客松中搭建了机器人实体交付和情绪感知软件交互两个版本，覆盖语音对话、NRC 情绪分析、饮品匹配、规格调整、长期记忆和机械臂抓取递送。',
-    outcome: '硬件版完成机器人接待、跟随、抓取与递送；软件版进入小米黑客松高校赛区前 12 强。',
+    outcome: '硬件版完成机器人接待、跟随、抓取与递送；软件版进入小米黑客松高校赛区前 10 强。',
     role: '项目统筹与技术架构设计；负责全部后端服务、情绪分析机制、推荐匹配逻辑和机器人侧通信与执行。',
     image: '/assets/emotender-cover.webp',
     imageAlt: 'EmoTender 情绪调酒机器人项目展示',
-    facts: ['两场黑客松', '小米前12强', 'Agent + Robot', '公开仓库'],
+    facts: ['两场黑客松', '小米前10强', 'Agent + Robot', '公开仓库'],
     stack: ['FastAPI', 'MiMo LLM/ASR/TTS', 'WebSocket', 'Python', 'NRC 情绪模型', 'OpenCV', 'Android'],
     challenge:
       '用户表达的是自然情绪和经历，系统需要从开放式表达中提取可校验的情绪结果，再分别映射为机器人确定动作和饮品推荐方案，而不是直接执行自然语言。',
@@ -127,7 +129,7 @@ export const systems = [
     ],
     evidence: [
       '硬件版完成接待、跟随、情绪对话、饮品共创、抓取和递送的全闭环现场 Demo。',
-      '软件版进入小米黑客松高校赛区前 12 强，完成完整可交互的情绪感知 Demo。',
+      '软件版进入小米黑客松高校赛区前 10 强，完成完整可交互的情绪感知 Demo。',
       '公开仓库包含 Agent 后端、Android APK、前端与测试。',
     ],
     limitations: [
@@ -149,11 +151,15 @@ export const systems = [
     tagline: '把任务目标、电脑行为、屏幕内容、视觉状态和物理反馈连接成可运行的闭环。',
     summary:
       '在 Hong Kong Physical AI Hackathon 中搭建 PC 端注意力检测服务，综合前台进程、屏幕截图分析和摄像头视觉追踪判断用户专注状态，并为手机和 K3 机器人提供结构化 API。',
-    outcome: '获 K3 智算先鋒獎，完成 PC–手机–K3 三端联调。',
+    outcome: '获 K3 智算先鋒獎，完成 PC–手机–K3 三端联调；参加 2026 进迭时空开发者大会并现场展示 iFocus。',
     role: 'PC 端技术架构与注意力检测主链路开发',
-    image: '/assets/ifocus-cover.webp',
-    imageAlt: 'iFocus 团队在 Hong Kong Physical AI Hackathon 获奖合影',
-    facts: ['Hackathon 获奖', '三端联调', '多模态检测'],
+    image: '/assets/spacemit-ifocus-exhibition.webp',
+    imageAlt: '2026 进迭时空开发者大会 iFocus 展台与 PIPER X 机械臂',
+    gallery: [
+      { src: '/assets/spacemit-devcon-portrait.webp', alt: '侯宇杰在 2026 进迭时空开发者大会现场', caption: '2026 进迭时空开发者大会 · 现场留影。' },
+      { src: '/assets/ifocus-cover.webp', alt: 'iFocus 团队在 Hong Kong Physical AI Hackathon 获奖合影', caption: 'Hong Kong Physical AI Hackathon · K3 智算先鋒獎。' },
+    ],
+    facts: ['Hackathon 获奖', '开发者大会展示', '多模态检测'],
     stack: ['Python', 'Flask', 'MediaPipe', 'OpenCV', 'DeepSeek API', 'K3', 'PIPER X'],
     challenge:
       '不是简单计时，而是综合判断用户是否仍在任务状态：进程检测判断软件是否合理，屏幕分析判断内容是否相关，视觉追踪判断用户是否面向屏幕。',
@@ -167,6 +173,7 @@ export const systems = [
     ],
     evidence: [
       'Hong Kong Physical AI Hackathon 现场完成三端联调并获奖。',
+      '参加 2026 进迭时空开发者大会，iFocus 在现场“开发者优秀作品”展区展示。',
       'PC 每 1 秒更新注意力缓存，输出结构化 focus_state 与持续时间。',
       '手机和 K3 均通过标准 HTTP GET 请求读取状态，不依赖 PC 主动推送。',
     ],
@@ -177,9 +184,10 @@ export const systems = [
     ],
     links: [{ label: '观看 iFocus 项目演示', href: publicLinks.ifocusDemo, kind: 'video' }],
   },
-]
+].map((system, index) => ({ ...system, index: String(index + 1).padStart(2, '0') }))
 
 const systemTranslationsEn = {
+  ...octoberSystemTranslationsEn,
   'uav-usv': {
     title: 'UAV-USV Cooperative Autonomous System',
     shortTitle: 'UAV-USV Cooperative System',
@@ -266,10 +274,10 @@ const systemTranslationsEn = {
     category: 'AI Agent / Emotion Perception / Robot Interaction',
     tagline: 'From natural conversation to drink recommendation to physical robot delivery — a complete soft-hard interaction loop driven by emotion understanding.',
     summary: 'Built two versions across a 48-hour hardware hackathon and the Xiaomi University Hackathon: a physical robot delivery system and an emotion-sensing software interaction demo, covering voice dialogue, NRC emotion analysis, drink matching, specification adjustment, long-term memory, and robotic arm grasping.',
-    outcome: 'Hardware version: completed robot reception, following, grasping and delivery. Software version: entered Xiaomi Hackathon University Division top 12.',
+    outcome: 'Hardware version: completed robot reception, following, grasping and delivery. Software version: entered Xiaomi Hackathon University Division top 10.',
     role: 'Project lead and technical architecture design; built the entire backend service, emotion analysis mechanism, recommendation matching logic, and robot-side communication and execution.',
     imageAlt: 'EmoTender emotion-aware bartending robot project',
-    facts: ['Two hackathons', 'Xiaomi top 12', 'Agent + Robot', 'Public repository'],
+    facts: ['Two hackathons', 'Xiaomi top 10', 'Agent + Robot', 'Public repository'],
     challenge: 'Users express natural emotions and experiences. The system must extract verifiable emotion results from open-ended expression, then map them to deterministic robot actions and drink recommendations rather than executing unconstrained natural language.',
     flow: ['Voice / text input', 'Dialogue + NRC emotion analysis', 'Structured emotion + drink matching', 'Spec adjustment + confirm', 'Robot execution / UI display'],
     contributions: [
@@ -282,7 +290,7 @@ const systemTranslationsEn = {
     ],
     evidence: [
       'Hardware version: completed reception, following, emotion dialogue, drink co-creation, grasping, and delivery in a full closed-loop live demo.',
-      'Software version: Xiaomi Hackathon University Division top 12, with a complete interactive emotion-perception demo.',
+      'Software version: Xiaomi Hackathon University Division top 10, with a complete interactive emotion-perception demo.',
       'Public repository includes Agent backend, Android APK, frontend, and tests.',
     ],
     limitations: [
@@ -301,10 +309,14 @@ const systemTranslationsEn = {
     category: 'Physical AI / Human-Computer Interaction',
     tagline: 'Connecting task goals, computer behavior, screen content, visual state, and physical feedback into an operational closed loop.',
     summary: 'Built a PC-side attention detection service at the Hong Kong Physical AI Hackathon, combining foreground process detection, screen capture analysis, and camera-based visual tracking to determine user focus state, with structured APIs for a phone and K3 robot.',
-    outcome: 'Won the K3 Smart Computing Pioneer Award and completed PC–phone–K3 integration.',
+    outcome: 'Won the K3 Smart Computing Pioneer Award, completed PC–phone–K3 integration, and exhibited iFocus at SpacemiT DevCon 2026.',
     role: 'PC-side technical architecture and attention detection pipeline development',
-    imageAlt: 'iFocus team receiving the award at the Hong Kong Physical AI Hackathon',
-    facts: ['Hackathon award', 'Three-device integration', 'Multi-modal detection'],
+    imageAlt: 'iFocus exhibition booth and PIPER X arm at SpacemiT DevCon 2026',
+    gallery: [
+      { src: '/assets/spacemit-devcon-portrait.webp', alt: 'Yujie Hou at SpacemiT DevCon 2026', caption: 'At SpacemiT DevCon 2026.' },
+      { src: '/assets/ifocus-cover.webp', alt: 'iFocus team receiving the award at the Hong Kong Physical AI Hackathon', caption: 'Hong Kong Physical AI Hackathon · K3 Smart Computing Pioneer Award.' },
+    ],
+    facts: ['Hackathon award', 'DevCon exhibition', 'Multi-modal detection'],
     challenge: 'Beyond simple timing: process detection checks if the software is reasonable, screen analysis checks if the content is task-relevant, and visual tracking checks if the user is facing the screen.',
     flow: ['Phone creates task', 'PC task understanding (LLM)', 'Foreground process detection', 'Screen capture analysis', 'Camera visual tracking', 'K3 reads state and responds'],
     contributions: [
@@ -316,6 +328,7 @@ const systemTranslationsEn = {
     ],
     evidence: [
       'Completed three-device integration and won an award at the Hong Kong Physical AI Hackathon.',
+      'Attended SpacemiT DevCon 2026, where iFocus was displayed in the developer showcase area.',
       'PC updates the attention cache every second, outputting structured focus_state and state duration.',
       'Both phone and K3 read state via standard HTTP GET requests without relying on PC push.',
     ],
